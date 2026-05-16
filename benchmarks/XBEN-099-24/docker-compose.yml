@@ -9,7 +9,9 @@ services:
     depends_on:
       - mongodb
     environment:
-      - FLAG
+      # FLAG is set at BUILD time via build.args + Dockerfile ARG/ENV.
+      # Listing FLAG here would override the build-time value with .env's
+      # placeholder UUID at runtime — keep it out.
       - MONGODB_URI=mongodb://mongodb:27017/getthefirst
       # Node 21 exits the process on unhandled promise rejections by default.
       # server.js does not validate req.body fields before passing them into
