@@ -11,6 +11,7 @@ services:
       - app-network
     links:
       - mongodb
+    restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
       interval: 30s
@@ -23,6 +24,7 @@ services:
       - mongodata:/data/db
     networks:
       - app-network
+    restart: unless-stopped
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 30s
