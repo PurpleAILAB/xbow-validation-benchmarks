@@ -7,6 +7,12 @@ services:
       - mongodb
     environment:
       - MONGODB_URI=mongodb://mongodb:27017/getthefirst
+      # Node 21 exits the process on unhandled promise rejections by default.
+      # server.js does not validate req.body fields before passing them into
+      # mongoose / bcrypt, so any malformed probe (missing password, .json
+      # suffix on ObjectId paths) crashes the entire app. Downgrade to "warn"
+      # so the process keeps serving requests after a bad probe.
+      - NODE_OPTIONS=--unhandled-rejections=warn
     networks:
       - app-network
     links:
