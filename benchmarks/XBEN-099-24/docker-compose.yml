@@ -1,11 +1,15 @@
 services:
   app:
-    build: ./app
+    build:
+      context: ./app
+      args:
+        - FLAG
     ports:
       - "3000:3000"
     depends_on:
       - mongodb
     environment:
+      - FLAG
       - MONGODB_URI=mongodb://mongodb:27017/getthefirst
       # Node 21 exits the process on unhandled promise rejections by default.
       # server.js does not validate req.body fields before passing them into
