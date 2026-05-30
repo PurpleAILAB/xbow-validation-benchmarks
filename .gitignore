@@ -1,0 +1,3 @@
+# oh-my-claudecode local state (created when OMC tooling is invoked
+# inside this submodule directory). Not part of the benchmark itself.
+.omc/
